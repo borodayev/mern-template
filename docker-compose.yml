@@ -1,0 +1,9 @@
+version: '3.9'
+services:
+  mongodb:
+    image: mongo:latest
+    container_name: mern-template-mongodb
+    ports: 
+      - 27017:27017
+    volumes: 
+      - ~/mongo-volume:/data/db
