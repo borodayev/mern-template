@@ -26,7 +26,7 @@ const clientConfiguration = (
   },
   devServer: {
     static: {
-      directory: path.join(__dirname, 'public')
+      directory: path.join(__dirname, './dist/public')
     },
     liveReload: true,
     compress: true,
@@ -58,20 +58,26 @@ const clientConfiguration = (
           'sass-loader',
           'postcss-loader'
         ]
+      },
+      {
+        test: /\.html$/,
+        loader: 'html-loader'
       }
     ]
   },
   plugins: [
     new CleanWebpackPlugin(),
     new HtmlWebpackPlugin({
-      template: 'public/index.html',
+      template: './public/index.html',
       filename: 'index.html',
       minify: {
         collapseWhitespace: true,
         removeComments: true,
         removeRedundantAttributes: true,
         useShortDoctype: true
-      }
+      },
+      hash: true,
+      cache: true
     }),
     new MiniCssExtractPlugin({
       filename: 'style-[fullhash].css'
